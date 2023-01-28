@@ -4,14 +4,14 @@ import { useBearsStore } from "./store-zustand"
 export function App() {
     const [popSelValue, setPopSelValue] = useState(1)
 
-    const bearsStore = useBearsStore()
+    const { birds, bears, increasePopulation, reset } = useBearsStore()
 
     // console.log("bearsState", bearsState)
 
     return (
         <div>
-            <h2>bears count: {bearsStore.bears}</h2>
-            <h2>birds count: {bearsStore.birds}</h2>
+            <h2>bears count: {bears}</h2>
+            <h2>birds count: {birds}</h2>
             <div>
                 <input
                     type="number"
@@ -24,21 +24,13 @@ export function App() {
                     }}
                 />
             </div>
-            <button
-                onClick={() =>
-                    bearsStore.increasePopulation(popSelValue, "bears")
-                }
-            >
+            <button onClick={() => increasePopulation(popSelValue, "bears")}>
                 Increase Bears
             </button>
-            <button
-                onClick={() =>
-                    bearsStore.increasePopulation(popSelValue, "birds")
-                }
-            >
+            <button onClick={() => increasePopulation(popSelValue, "birds")}>
                 Increase Birds
             </button>
-            <button onClick={() => bearsStore.reset()}>Reset</button>
+            <button onClick={() => reset()}>Reset</button>
         </div>
     )
 }
